@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/layoutCadParticipante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/cadFoto"
+            android:layout_width="@dimen/width_foto_principal"
+            android:layout_height="@dimen/height_foto_principal"
+            android:clickable="true"
+            android:onClick="takePic"
+            android:src="@drawable/sem_foto_peq" />
+
+        <EditText
+            android:id="@+id/cadNomeParticipante"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/cadFoto"
+            android:ems="10"
+            android:hint="Nome"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/cadTagParticipante"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cadNomeParticipante"
+            android:layout_toRightOf="@id/cadFoto"
+            android:ems="10"
+            android:hint="TAG"
+            android:onClick="reqTag" />
+
+        <Button
+            android:id="@+id/cadSalvarParticipante"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cadTagParticipante"
+            android:layout_toRightOf="@id/cadFoto"
+            android:onClick="salvarParticipante"
+            android:text="Salvar" />
+
+        <Button
+            android:id="@+id/cadNovoParticipante"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cadTagParticipante"
+            android:layout_toRightOf="@+id/cadSalvarParticipante"
+            android:enabled="false"
+            android:onClick="limparCadastroParticipante"
+            android:text="Novo" />
+
+        <Button
+            android:id="@+id/cadPesquisa"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cadTagParticipante"
+            android:layout_toRightOf="@id/cadNovoParticipante"
+            android:onClick="pesquisarParticipante"
+            android:text="Pesquisar" />
+
+        <Button
+            android:id="@+id/cadLimpar"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cadTagParticipante"
+            android:layout_toRightOf="@id/cadPesquisa"
+            android:enabled="false"
+            android:onClick="limparMedicoes"
+            android:text="Limpar Medições" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textViewTotalParticipantes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="false"
+        android:layout_below="@id/layoutCadParticipante"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/listViewParticipantes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTotalParticipantes" >
+
+    </ListView>
+
+</RelativeLayout>

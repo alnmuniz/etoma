@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ScrollView
+        android:id="@+id/scrollSerial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <TextView
+            android:id="@+id/saidaSerial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <View
+        android:id="@+id/viewMonitor"
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/scrollSerial"
+        android:background="#eeeeee" />
+
+    <Button
+        android:id="@+id/btnReqTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/btnReqReset"
+        android:onClick="reqTag"
+        android:text="@string/string_req_tag" />
+
+    <Button
+        android:id="@+id/btnReqBaf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/btnReqTag"
+        android:onClick="reqBaf"
+        android:text="@string/string_req_baf" />
+
+    <Button
+        android:id="@+id/btnReqReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="reqReset"
+        android:text="@string/string_req_reset" />
+
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">e-Toma</string>
+    <string name="title_pricinpal">Principal</string>
+    <string name="title_cadastro">Maratoma</string>
+    <string name="title_monitor">Monitor</string>
+    <string name="title_participantes">Participantes</string>
+    <string name="action_settings">Configurações</string>
+    <string name="action_reconect">Reconectar</string>
+    <string name="share">Compartilhar</string>
+    <string name="stringNome">Zé Bebum</string>
+    <string name="stringDescFoto">Foto do bebum</string>
+    <string name="stringDescID">RFID do bebum</string>
+    <string name="stringRFID">ID: 123456</string>
+    <string name="stringPosicao">Posição: 1º</string>
+    <string name="stringMedicao">Bafômetro:</string>
+    <string name="stringTempo">09 s</string>
+    <string name="stringValor">&#8230;</string>
+    <string name="string_req_tag">REQ TAG</string>
+    <string name="string_req_baf">REQ BAF</string>
+    <string name="string_req_reset">RESET</string>
+    <string name="string_passe_a_tag">Passe a TAG.</string>
+    <string name="string_excluir">Excluir</string>
+    <string name="string_ranking">Ranking (média)</string>
+    <string name="string_nenhuma_maratoma">Nenhuma Maratoma cadastrada.</string>
+
+</resources>
+

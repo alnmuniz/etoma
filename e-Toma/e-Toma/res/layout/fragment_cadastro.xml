@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.e_toma.PrincipalFragment" >
+
+    <RelativeLayout
+        android:id="@+id/layoutCadMaratoma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textViewTituloMaratoma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maratoma"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/cadNomeEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/textViewTituloMaratoma"
+            android:hint="Nome do evento" />
+
+        <TextView
+            android:id="@+id/cadDataEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/cadNomeEvento"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/cadNomeEvento"
+            android:layout_toRightOf="@id/cadNomeEvento"
+            android:clickable="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:hint="Data do evento"
+            android:onClick="showDatePickerDialog"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/cadSalvarMaratoma"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cadNomeEvento"
+            android:onClick="salvarMaratoma"
+            android:text="Salvar" />
+
+        <Button
+            android:id="@+id/cadNovaMaratoma"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cadNomeEvento"
+            android:layout_toRightOf="@id/cadSalvarMaratoma"
+            android:enabled="false"
+            android:onClick="limparCadastroMaratoma"
+            android:text="Nova" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textViewTotalMaratomas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutCadMaratoma" />
+
+    <ListView
+        android:id="@+id/listViewMaratomas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTotalMaratomas" >
+
+    </ListView>
+
+</RelativeLayout>
