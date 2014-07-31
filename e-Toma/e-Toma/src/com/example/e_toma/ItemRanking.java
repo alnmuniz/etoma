@@ -15,4 +15,11 @@ public class ItemRanking implements Comparable<ItemRanking>{
 		}
 		return 0;
 	}	
+	
+	@Override
+	public String toString() {
+		
+		return posicao + "º " + p.nome + " (" + valor + ")";
+		
+	}
 }

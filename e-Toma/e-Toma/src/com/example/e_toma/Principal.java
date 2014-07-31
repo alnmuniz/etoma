@@ -48,7 +48,6 @@ import android.support.v7.widget.ShareActionProvider;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -97,7 +96,8 @@ public class Principal extends ActionBarActivity implements
 	private static TextView mNomeParticipante;
 	private static TextView mPosicaoParticipante;
 	private static TextView mTituloMaratoma;
-	private static TextView mRanking;
+	private static ListView mListaRanking;
+	private static ArrayAdapter<ItemRanking> mRankingAdapter;
 	private static FrameLayout mLayoutGrafico;
 
 	// Dados da medição
@@ -542,7 +542,28 @@ public class Principal extends ActionBarActivity implements
 			mTituloMaratoma = (TextView) rootView
 					.findViewById(R.id.textViewMaratoma);
 
-			mRanking = (TextView) rootView.findViewById(R.id.textRanking);
+			mListaRanking = (ListView) rootView.findViewById(R.id.listViewRanking);
+			// abaixo define o clique sobre um item do ranking
+			mListaRanking.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+
+					if (estadoAtual != ETomaEstados.MEDICAO_TAG){
+						return;
+					}
+					
+					ItemRanking ir = mMaratoma.ranking.get(arg2);
+					
+					PrincipalFragment.mostrarValorBafometro("...");
+					
+					Principal.autoRef.carregarDadosParticipante(ir.p);
+					
+					Principal.autoRef.mostrarGrafico();
+				}
+			});
+			
 
 			mLayoutGrafico = (FrameLayout) rootView
 					.findViewById(R.id.layoutGrafico);
@@ -891,16 +912,25 @@ public class Principal extends ActionBarActivity implements
 		}
 	}
 
+	public void carregarDadosParticipante(Participante p) {
+		
+		mParticipante = p;
+		
+		PrincipalFragment.mostrarId(p.tag);
+		mostrarFoto(mFoto, p.fotoPath);
+		PrincipalFragment.mostrarNome(p.nome);
+
+		mostrarPosicaoParticipante();		
+		
+	}
+	
 	private boolean carregarDadosParticipante(String tagParticipante) {
 
 		mParticipante = ETomaControle.obterParticipantePorTag(tagParticipante);
 
 		if (mParticipante != null) {
-			PrincipalFragment.mostrarId(mParticipante.tag);
-			mostrarFoto(mFoto, mParticipante.fotoPath);
-			PrincipalFragment.mostrarNome(mParticipante.nome);
-
-			mostrarPosicaoParticipante();
+			
+			carregarDadosParticipante(mParticipante);
 
 			return true;
 		} else {
@@ -1656,14 +1686,8 @@ public class Principal extends ActionBarActivity implements
 						+ dataEvento);
 
 			}
-
-			if (mRanking != null) {
-				mRanking.setText("");
-				for (ItemRanking ir : mMaratoma.ranking) {
-					mRanking.append(ir.posicao + "º " + ir.p.nome + " ("
-							+ ir.valor + ")\n");
-				}
-			}
+			
+			mostrarListaRanking();
 		}
 	}
 
@@ -1734,6 +1758,28 @@ public class Principal extends ActionBarActivity implements
 		}
 
 		mMaratomasAdapter.notifyDataSetChanged();
+	}
+	
+	public static void mostrarListaRanking() {
+
+		if (mListaRanking == null) {
+			return;
+		}
+
+		// carregar lista do ranking
+		if (mRankingAdapter == null) {
+			mRankingAdapter = new ArrayAdapter<ItemRanking>(autoRef,
+					android.R.layout.simple_list_item_1);
+		} else {
+			mRankingAdapter.clear();
+		}
+
+		mListaRanking.setAdapter(mRankingAdapter);
+
+		mRankingAdapter.addAll(mMaratoma.ranking);
+		
+		mRankingAdapter.notifyDataSetChanged();
+
 	}
 
 	public void mostrarGrafico() {
@@ -1954,16 +2000,16 @@ public class Principal extends ActionBarActivity implements
 
 		if (mParticipante != null && mMaratoma != null) {
 
-			int pos = mMaratoma.obterPosicao(mParticipante);
-
-			String assunto = "Nova baforada de " + mParticipante.nome + "!";
-			String mensagem = "Valor do bafômetro: " + valorBaf + "\n";
-
-			if (pos > 0) {
-				mensagem += "Posição atual do ranking: " + pos;
-			} else {
-				mensagem += "Leitura inicial.";
-			}
+//			int pos = mMaratoma.obterPosicao(mParticipante);
+//
+//			String assunto = "Nova baforada de " + mParticipante.nome + "!";
+//			String mensagem = "Valor do bafômetro: " + valorBaf + "\n";
+//
+//			if (pos > 0) {
+//				mensagem += "Posição atual do ranking: " + pos;
+//			} else {
+//				mensagem += "Leitura inicial.";
+//			}
 
 			// publicarBlog(assunto, mensagem);
 			// compartilharBaforada(assunto,mensagem);
@@ -2054,11 +2100,9 @@ public class Principal extends ActionBarActivity implements
 			mMaratoma.atualizarScreenshot(mParticipante, imageFile);
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			mCurrentScreenshotPath = null;
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			mCurrentScreenshotPath = null;
 			e.printStackTrace();
 		}

@@ -63,19 +63,11 @@
             android:text="@string/string_ranking"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <ScrollView
-            android:id="@+id/scrollRanking"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <TextView
-                android:id="@+id/textRanking"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="36dp"
-                android:layout_marginRight="74dp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </ScrollView>
+        <ListView
+            android:id="@+id/listViewRanking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
     </LinearLayout>
 
     <RelativeLayout
@@ -124,7 +116,10 @@
                 android:id="@+id/textPosicaao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:background="@android:color/holo_orange_light"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </RelativeLayout>
